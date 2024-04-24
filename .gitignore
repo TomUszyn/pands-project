@@ -213,7 +213,7 @@ Icon
 .VolumeIcon.icns
 .com.apple.timemachine.donotpresent
 
-# VS Code
+p# VS Code
 .vscode/
 # Local History for Visual Studio Code
 .history/
