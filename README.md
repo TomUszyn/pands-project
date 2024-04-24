@@ -1,7 +1,7 @@
 # Programming and Scripting - Project.
 
 ## Description
-
+This project concerns the well-known Fisher’s Iris data set.
 
 
 ## Contents
@@ -47,7 +47,7 @@ steps:
 
 6. Navigate to the cloned repository:
     ```
-    cd pands-weekly-tasks
+    cd pands-project
 
 7. In VS Code, type name of file with extension .py from the pands-project folder and press enter to execute it.
 
