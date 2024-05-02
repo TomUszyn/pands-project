@@ -1,14 +1,23 @@
 # Programming and Scripting - Project.
 
-## Description
-This project concerns the well-known Fisher’s Iris data set.
+## Description.
+This project concerns the well-known Fisher’s Iris data set. This project presents an excellent opportunity to learn and develop Python code skills. Researching the data set online and writing documentation about it in your README file is necessary. The task is divided into several smaller tasks, such as researching and summarizing the dataset, downloading and adding it to the repository, and writing a program to output summaries, histograms, and scatter plots for each variable. It is also expected to perform any other appropriate analysis. Extra documentation in the form of a Jupyter Notebook containing all your comments can be created. The data set, after a bit of searching, focused on finding well-formatted data, was downloaded from [Michael Waskom GitHub](https://github.com/mwaskom/seaborn-data/blob/master/iris.csv). It is very important to download the data set as Raw file. The file was chosen because it has the proper name: `iris.csv' and the data looks clear.
 
+## Reseach the data set.
+While searching the Internet for information about the Iris dataset and the source of the csv file representing this dataset, it was visible that it is a very popular source for analysis.
+This data set is widely analyzed by analysts on many websites, highlighting its value as a source of highly valuable information.
+Summary:
+Accoding to [Wikipedia website](https://en.wikipedia.org/wiki/Iris_flower_data_set):
+The Iris flower data set, known as Fisher's Iris data set, is a multivariate data set used by British statistician and biologist Ronald Fisher. This is a perfect example of linear discriminant analysis. The data set includes 50 samples of each of the three species of Iris flowers called setosa, virginica and versicolor, and four features such as sepal length, sepal width, petal length and petal width were measured from each sample. By combining these four features, Fisher developed a linear discriminant model which could discriminate between species. The Iris data set is famous as a starting point for machine learning and comes with both R base and Python in the scikit-learn machine learning library.
+<img src="img/Description-of-IRIS-dataset-showing-Petal-length-Sepal-length-Petal-width-and-Sepal.png"  width="300" height="324" img align='center'>
+The picture illustrates what is the sepal length, sepal width, petal length and petal width It was originally updated by Pratibha Jadhav on the [ResearchGate website](https://www.researchgate.net/figure/Description-of-IRIS-dataset-showing-Petal-length-Sepal-length-Petal-width-and-Sepal_fig1_342859543) and may be subject to copyright.
 
-## Contents
+The repository has the following structure:
+* Folder [`data`](data) - The folder where the data file is located is iris.csv
+* Folder [`img`](img) - The forlder where pictures are located.
+* [`analysis.py`](analysis.py) - The main program for this project.
 
-
-
-## Getting Started
+## Getting Started.
 
 If you want to be sure that you have the right programming environment for this repository, you should follow these extra 
 steps:
@@ -49,11 +58,11 @@ steps:
     ```
     cd pands-project
 
-7. In VS Code, type name of file with extension .py from the pands-project folder and press enter to execute it.
+7. In VS Code, type name of file [`analysis.py`](analysis.py) from the pands-project folder and press enter to execute it.
 
 Notice: Make sure you are in the correct patch for the file you are trying to execute. Otherwise, you may encounter an error.
 
-## License
+## License.
 
 This repository is licensed under the MIT License. See below:
 
@@ -78,11 +87,11 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
-## Contact
+## Contact.
 
 If you have any questions or suggestions, feel free to reach out to me at [tomaszuszynski3@gmail.com](mailto:tomaszuszynski@gmail.com).
 
-## Author
+## Author.
 
 As a novice in the world of programming, I am deeply passionate about this field and eager to explore new concepts and technologies. Programming provides me with a platform to showcase my creativity and problem-solving abilities, fueling my enthusiasm to improve my programming skills. With programming, I can delve into data analysis, work with datasets, identify important findings, and make data-driven decisions. It equips me with the necessary tools and skills to explore intricate data sets, apply statistical techniques, and visualize data effectively. Programming offers a plethora of opportunities in data analysis, enabling me to contribute to solving real-world issues. Programming drives me to work diligently in my everyday routine and helps me translate ideas into real-life applications. It is a stimulating and rewarding field with countless possibilities for personal and professional growth.
 
