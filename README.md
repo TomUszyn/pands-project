@@ -9,8 +9,10 @@ This data set is widely analyzed by analysts on many websites, highlighting its 
 Summary:
 Accoding to [Wikipedia website](https://en.wikipedia.org/wiki/Iris_flower_data_set):
 The Iris flower data set, known as Fisher's Iris data set, is a multivariate data set used by British statistician and biologist Ronald Fisher. This is a perfect example of linear discriminant analysis. The data set includes 50 samples of each of the three species of Iris flowers called setosa, virginica and versicolor, and four features such as sepal length, sepal width, petal length and petal width were measured from each sample. By combining these four features, Fisher developed a linear discriminant model which could discriminate between species. The Iris data set is famous as a starting point for machine learning and comes with both R base and Python in the scikit-learn machine learning library.
+
 <img src="img/Description-of-IRIS-dataset-showing-Petal-length-Sepal-length-Petal-width-and-Sepal.png"  width="300" height="324" img align='center'>
-The picture illustrates what is the sepal length, sepal width, petal length and petal width It was originally updated by Pratibha Jadhav on the [ResearchGate website](https://www.researchgate.net/figure/Description-of-IRIS-dataset-showing-Petal-length-Sepal-length-Petal-width-and-Sepal_fig1_342859543) and may be subject to copyright.
+
+The picture illustrates what is the sepal length, sepal width, petal length and petal width. It was originally updated by Pratibha Jadhav on the [ResearchGate website](https://www.researchgate.net/figure/Description-of-IRIS-dataset-showing-Petal-length-Sepal-length-Petal-width-and-Sepal_fig1_342859543) and may be subject to copyright.
 
 The repository has the following structure:
 * Folder [`data`](data) - The folder where the data file is located is iris.csv
