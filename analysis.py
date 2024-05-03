@@ -6,7 +6,7 @@
 
 # Importing the necessary libraries.
 import pandas as pd                                     # Importing the pandas library.
-import numpy as np                                      # Importing the numpy library.
+import numpy as np                                      # Importing the NumPy library.
 import matplotlib.pyplot as plt                         # Importing the matplotlib library.
 
 # Reading the data from the file.

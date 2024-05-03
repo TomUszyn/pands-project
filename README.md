@@ -2,6 +2,14 @@
 
 ## Description.
 This project concerns the well-known Fisher’s Iris data set. This project presents an excellent opportunity to learn and develop Python code skills. Researching the data set online and writing documentation about it in your README file is necessary. The task is divided into several smaller tasks, such as researching and summarizing the dataset, downloading and adding it to the repository, and writing a program to output summaries, histograms, and scatter plots for each variable. It is also expected to perform any other appropriate analysis. Extra documentation in the form of a Jupyter Notebook containing all your comments can be created. The data set, after a bit of searching, focused on finding well-formatted data, was downloaded from [Michael Waskom GitHub](https://github.com/mwaskom/seaborn-data/blob/master/iris.csv). It is very important to download the data set as Raw file. The file was chosen because it has the proper name: `iris.csv' and the data looks clear.
+Below is a list of different sources of the Fisher’s Iris data set:
+
+* [Jaeho Shin GitHub.](https://gist.github.com/netj/8836201)
+* [Michael Waskom.](https://github.com/mwaskom/seaborn-data/blob/master/iris.csv)
+* [Open Course Ware website.](https://ocw.mit.edu/courses/15-097-prediction-machine-learning-and-statistics-spring-2012/89d88c5528513adc4002a1618ce2efb0_iris.csv)
+* [UC Irvine Machine Learning Repository.](https://archive.ics.uci.edu/dataset/53/iris)
+
+
 
 ## Reseach the data set.
 While searching the Internet for information about the Iris dataset and the source of the csv file representing this dataset, it was visible that it is a very popular source for analysis.
