@@ -12,6 +12,37 @@ import matplotlib.pyplot as plt                         # Importing the matplotl
 # Reading the data from the file.
 pd = pd.read_csv("data/iris.csv")                       # Reading the data from the iris.csv file.
 
+# Creating function to write the summary of data set to a text file.
+def writeSummaryToFile(filename):                       # Defining the writeSummaryToFile function.
+    """
+    Writes a summary of the ataset to the specified file.
+
+    Args:
+        filename (str): The name of the file to write the summary to.
+    """
+    with open(filename, "w") as file:                   # Opening the file in write mode.
+        file.write("Summary of the Iris dataset\n\n")
+        file.write("The Iris dataset contains 150 rows and 5 columns.\n")
+        file.write(str(pd.shape) + "\n\n")              # Writing the shape of the dataset to the file.
+        file.write("Types of each column in the dataset:\n")
+        file.write(str(pd.dtypes) + "\n\n")             # Writing the data types of each column to the file.
+        file.write("The first 5 rows of the dataset:\n")
+        file.write(str(pd.head()) + "\n\n")             # Writing the first 5 rows of the dataset to the file.
+        file.write("The last 5 rows of the dataset:\n")
+        file.write(str(pd.tail()) + "\n\n")             # Writing the last 5 rows of the dataset to the file.
+        file.write("The summary of the dataset:\n")
+        file.write(str(pd.describe()) + "\n\n")         # Writing the summary statistics of the dataset to the file.
+        file.write("The number of each species in the dataset:\n")
+        file.write(str(pd["species"].value_counts()) + "\n\n")  # Writing the number of each species in the dataset to the file. 
+        file.write("The number of missing values in the dataset:\n")
+        file.write(str(pd.isnull().sum()) + "\n\n")     # Writing the number of missing values in the dataset to the file.
+        file.write("The number of unique values in the dataset:\n")
+        file.write(str(pd.nunique()) + "\n\n")          # Writing the number of unique values in the dataset to the file.
+        file.write("The number of duplicate rows in the dataset:\n")
+        file.write(str(pd.duplicated().sum()) + "\n\n") # Writing the number of duplicate rows in the dataset to the file.
+# Example usage:
+# writeSummaryToFile("summary.txt")                     # Calling the writeSummaryToFile function and passing the name of the file to write the summary to.
+
 # Displaying the menu.
 def displayMenu():                                      # Defining the displayMenu function.
     print("Welcome to the Iris dataset analysis program. Please select an option from the menu below:\n")   #
@@ -26,9 +57,8 @@ def displayMenu():                                      # Defining the displayMe
 choice = displayMenu()                                  # Calling the displayMenu function and storing the user's choice in the variable choice.
 while choice != "q":                                    # While the user's choice is not "q", the program will continue to run.
     if choice == "s":                                   # If the user's choice is "s", the program will execute the following code.
-        print("The summary file for the Iris data set has been created and saved to summary.txt file.\n")
-        # Printing a message to confirm that the summary is being created.
-
+        print("The summary file for the Iris data set has been created and saved to summary.txt file.\n") # Printing a message to confirm that the summary is being created.
+        writeSummaryToFile("summary.txt")               # Calling the writeSummaryToFile function and passing the name of the file to write the summary to.
     elif choice == "h":                                 # If the user's choice is "h", the program will execute the following code.
         print("Histograms of each variable from the Iris data set has been saved to PNG files.\n") # Printing a message to confirm that the histograms are being created.
     
