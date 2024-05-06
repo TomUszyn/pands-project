@@ -50,6 +50,32 @@ def writeSummaryToFile(filename):                       # Defining the writeSumm
 # Example usage:
 # writeSummaryToFile("summary.txt")                     # Calling the writeSummaryToFile function and passing the name of the file to write the summary to.
 
+# Creating a function to save a histogram of each variable to a PNG file.
+def saveHist(pd, variable_name, num_bins=10):       # Defining the saveHist function.
+    """
+    Creates a histogram for the specified variable and saves it as a PNG file.
+
+    Arguments:
+        data (pandas.Series) are data for the variable.
+        variable_name (str) is a name of the variable.
+        num_bins (int, optional)is a number of bins for the histogram. Default is set to 10.
+    """
+    plt.figure(figsize=(10, 8))                                          # Creating a figure with a specified size.
+    
+    # Counting of bin width. 
+    bin_width = (pd.max() - pd.min()) / (num_bins)                       # Calculating the bin width.
+    plt.xticks(np.arange(pd.min(), pd.max() + bin_width, bin_width))     # Setting the x-axis ticks.
+    plt.hist(pd, bins=num_bins, color = "blue", edgecolor = "black")     # Creating a histogram.
+    plt.title(f"Histogram of {variable_name}.", fontsize = 15, fontweight = "bold") # Adding a title to the plot.
+    plt.xlabel(f"{variable_name} (cm).", fontsize = 12, fontweight = "bold") # Adding a label to the x-axis.
+    plt.ylabel("Frequency.", fontsize = 12, fontweight = "bold")         # Adding a label to the y-axis.
+    plt.savefig(f"{variable_name.lower().replace(' ', '_')}_hist.png")   # Saving the plot as a PNG file.   
+    plt.close()                                                          # Closing the plot.
+    
+# Example usage:
+# Assuming 'pd' is pandas DataFrame and 'sepal_length' is the variable wanted to be plotted.
+# saveHist(pd["sepal_length"], "Sepal Length")
+
 # Displaying the menu.
 def displayMenu():                                      # Defining the displayMenu function.
     print("Welcome to the Iris dataset analysis program. Please select an option from the menu below:\n")   #
@@ -61,6 +87,8 @@ def displayMenu():                                      # Defining the displayMe
     choice = input("Please select (s/h/p/a/q): ")                                                           # Asking the user to select an option.
     return choice                                       # Returning the user's choice.
 
+
+# Main program.
 choice = displayMenu()                                  # Calling the displayMenu function and storing the user's choice in the variable choice.
 while choice != "q":                                    # While the user's choice is not "q", the program will continue to run.
     if choice == "s":                                   # If the user's choice is "s", the program will execute the following code.
@@ -68,7 +96,12 @@ while choice != "q":                                    # While the user's choic
         writeSummaryToFile("summary.txt")               # Calling the writeSummaryToFile function and passing the name of the file to write the summary to.
     elif choice == "h":                                 # If the user's choice is "h", the program will execute the following code.
         print("Histograms of each variable from the Iris data set has been saved to PNG files.\n") # Printing a message to confirm that the histograms are being created.
-    
+        # Creating histograms of each variable and saving each plot to individual PNG files.
+        saveHist(pd["sepal_length"], "Sepal Length")          #
+        saveHist(pd["sepal_width"], "Sepal Width")            # Creating  the histograms for each varialbles.
+        saveHist(pd["petal_length"], "Petal Length")          #
+        saveHist(pd["petal_width"], "Petal Width")            #
+
     elif choice == "p":                                 # If the user's choice is "p", the program will execute the following code.
         print("Scatter plots for each pair of variables From the Iris data set has been created.\n") # Printing a message to confirm that the scatter plots are being created.
 
