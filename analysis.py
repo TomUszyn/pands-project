@@ -15,7 +15,7 @@ pd = pd.read_csv("data/iris.csv")                       # Reading the data from 
 # Creating function to write the summary of data set to a text file.
 def writeSummaryToFile(filename):                       # Defining the writeSummaryToFile function.
     """
-    Writes a summary of the ataset to the specified file.
+    Writes a summary of the data set to the specified file.
 
     Args:
         filename (str): The name of the file to write the summary to.
@@ -40,6 +40,13 @@ def writeSummaryToFile(filename):                       # Defining the writeSumm
         file.write(str(pd.nunique()) + "\n\n")          # Writing the number of unique values in the dataset to the file.
         file.write("The number of duplicate rows in the dataset:\n")
         file.write(str(pd.duplicated().sum()) + "\n\n") # Writing the number of duplicate rows in the dataset to the file.
+        # Find duplicate rows (all occurrences)
+        duplicate_mask = pd.duplicated(keep=False)      # Finding duplicate rows (all occurrences).
+        duplicate_entries = pd[duplicate_mask]          # Storing duplicate entries in the variable duplicate_entries.
+        # Display all duplicate entries
+        file.write("All Duplicate Entries:\n")
+        file.write(str(duplicate_entries))              # Writing all duplicate entries to the file.
+        
 # Example usage:
 # writeSummaryToFile("summary.txt")                     # Calling the writeSummaryToFile function and passing the name of the file to write the summary to.
 
