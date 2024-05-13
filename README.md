@@ -25,7 +25,12 @@ The picture illustrates what is the sepal length, sepal width, petal length and 
 The repository has the following structure:
 * Folder [`data`](data) - The folder where the data file is located is iris.csv
 * Folder [`img`](img) - The forlder where pictures are located.
+* [`.gitignore`](.gitignore) - The file where can define files or folders that Git should ignore and not track in a repository.
 * [`analysis.py`](analysis.py) - The main program for this project.
+* [`analysisFunctions.py`](analysisFunctions.py) - The file where are located all functions used to perform the analysis.
+* [`Documentation.ipynb`](Documentation.ipynb) - The is a well-organized guidebook that explains implemented algorithms and techniques. It's a must-have for users seeking to understand codes and academic information. 
+* [`README.md`](README.md) - The file where every user should start their experience with the repository. It contains essential information and guidance through the repository.
+
 
 ## Getting Started.
 
