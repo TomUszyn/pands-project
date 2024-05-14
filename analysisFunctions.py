@@ -13,7 +13,7 @@ def analyseCorrelation(filename): # Define a function called analyseCorrelation 
     Creates a correlation matrix and writes the results with analysis to a file.
     
     Arguments:  
-            outputFileName: the name of the output file.
+            filename: the name of the output file.
     """
     numericColumns =df.drop(columns=["species"])    # Exclude the "species" column.
     correlationMatrix = numericColumns.corr()       # Calculate the correlation matrix.
