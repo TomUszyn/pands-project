@@ -10,7 +10,7 @@ df = pd.read_csv("data/iris.csv")       # Load the Iris dataset.
 # Function analyseCorrelation.
 def analyseCorrelation(filename): # Define a function called analyseCorrelation that takes an output file name as an argument.
     """
-    Creates a correlation matrix and writes the results to a file.
+    Creates a correlation matrix and writes the results with analysis to a file.
     
     Arguments:  
             outputFileName: the name of the output file.
@@ -46,5 +46,5 @@ def analyseCorrelation(filename): # Define a function called analyseCorrelation 
 
         file.write("\n\n")              # Write two new lines to separate the correlation results.
 
-# Call the function with the filename
-# analyseCorrelation("analysis.txt")
+# Call the function with the text filename.
+# analyseCorrelation("analysis.txt").
