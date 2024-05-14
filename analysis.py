@@ -8,7 +8,8 @@
 import pandas as pd                                     # Importing the pandas library.
 import numpy as np                                      # Importing the NumPy library.
 import matplotlib.pyplot as plt                         # Importing the matplotlib library.
-from analysisFunctions import analyseCorrelation       # Importing the analyseCorrelation function from the analysisFunctions.py file.
+from analysisFunctions import analyseCorrelation, writeStatsBySpecies   # Importing the analyseCorrelation function 
+                                                        # and writeStatsBySpecies from the analysisFunctions.py file.
 
 # Reading the data from the file.
 pd = pd.read_csv("data/iris.csv")                       # Reading the data from the iris.csv file.
@@ -150,7 +151,8 @@ while choice != "q":                                    # While the user's choic
 
     elif choice == "a":                                 # If the user's choice is "a", the program will execute the following code.
         print ("The analysis has been saved to analysis.txt.\n") # Printing a message to confirm that the analysis has been saved.
-        analyseCorrelation("analysis.txt")
+        analyseCorrelation("analysis.txt")              # Calling the analyseCorrelation function and passing the name of the file to write the analysis to.
+        writeStatsBySpecies('analysis.txt')             # Calling the writeStatsBySpecies function and passing the name of the file to write the analysis to.
     else:                                               # If the user's choice is not "s", "h", "p", "a" or "q", 
                                                         # the program will execute the following code.
         print ("Invalid choice. Please select one of the letters representing one of the menu options.")    # Printing an error message.

@@ -48,3 +48,35 @@ def analyseCorrelation(filename): # Define a function called analyseCorrelation 
 
 # Call the function with the text filename.
 # analyseCorrelation("analysis.txt").
+
+# Function writeStatsBySpecies.
+def writeStatsBySpecies(filename):      # Define a function called writeStatsBySpecies 
+                                        # that takes a filename as an argument.
+    """
+    Creates a table with the statistics of the Iris dataset by species and writes the results to a file.
+
+    Arguments:  
+            filename: the name of the output file.
+    """
+    statsBySpecies = df.groupby('species').agg(['mean', 'median', 'std'])   # Calculate statistics by species.
+
+    with open(filename, 'a') as file:   # Save the formatted table as a text file.
+        file.write(                                                     # 
+            f"The mean, the median and the standadard deviation by "    # Write the title of the analysis.
+            f"species in the Iris dataset by species.\n\n"              #
+            )                                                           #
+        for species, row in statsBySpecies.iterrows():                  # Iterate over the rows of the statsBySpecies DataFrame.
+            file.write(f"{species.capitalize()}:\n")                    # Write the species name.
+            for col in ['sepal_length', 'sepal_width', 'petal_length', 'petal_width']:  # Iterate over the columns.
+                file.write(                                     #
+                    f"  {col.capitalize().replace('_', ' ')}:"  #
+                    f" mean={row[(col, 'mean')]:.2f}, "         #
+                    f" median={row[(col, 'median')]:.2f}, "     # Write the statistics for each column.
+                    f" std={row[(col, 'std')]:.2f}\n"           #
+                    )                                           #
+            
+            file.write("\n")                                    # Write a new line to separate the species.
+
+# Usage
+# writeStatsBySpecies('analysis.txt')
+       
