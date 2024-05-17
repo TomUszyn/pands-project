@@ -8,11 +8,11 @@
 import pandas as pd                                     # Importing the pandas library.
 import numpy as np                                      # Importing the NumPy library.
 import matplotlib.pyplot as plt                         # Importing the matplotlib library.
-from analysisFunctions import analyseCorrelation, writeStatsBySpecies   # Importing the analyseCorrelation function 
+from analysisFunctions import analyseCorrelation, writeStatsBySpecies, findOutliers   # Importing the analyseCorrelation function 
                                                         # and writeStatsBySpecies from the analysisFunctions.py file.
 
 # Reading the data from the file.
-pd = pd.read_csv("data/iris.csv")                       # Reading the data from the iris.csv file.
+df = pd.read_csv("data/iris.csv")                       # Reading the data from the iris.csv file.
 
 # Creating function to write the summary of data set to a text file.
 def writeSummaryToFile(filename):                       # Defining the writeSummaryToFile function.
@@ -25,26 +25,26 @@ def writeSummaryToFile(filename):                       # Defining the writeSumm
     with open(filename, "w") as file:                   # Opening the file in write mode.
         file.write("Summary of the Iris dataset\n\n")
         file.write("The Iris dataset contains 150 rows and 5 columns.\n")
-        file.write(str(pd.shape) + "\n\n")              # Writing the shape of the dataset to the file.
+        file.write(str(df.shape) + "\n\n")              # Writing the shape of the dataset to the file.
         file.write("Types of each column in the dataset:\n")
-        file.write(str(pd.dtypes) + "\n\n")             # Writing the data types of each column to the file.
+        file.write(str(df.dtypes) + "\n\n")             # Writing the data types of each column to the file.
         file.write("The first 5 rows of the dataset:\n")
-        file.write(str(pd.head()) + "\n\n")             # Writing the first 5 rows of the dataset to the file.
+        file.write(str(df.head()) + "\n\n")             # Writing the first 5 rows of the dataset to the file.
         file.write("The last 5 rows of the dataset:\n")
-        file.write(str(pd.tail()) + "\n\n")             # Writing the last 5 rows of the dataset to the file.
+        file.write(str(df.tail()) + "\n\n")             # Writing the last 5 rows of the dataset to the file.
         file.write("The summary of the dataset:\n")
-        file.write(str(pd.describe()) + "\n\n")         # Writing the summary statistics of the dataset to the file.
+        file.write(str(df.describe()) + "\n\n")         # Writing the summary statistics of the dataset to the file.
         file.write("The number of each species in the dataset:\n")
-        file.write(str(pd["species"].value_counts()) + "\n\n")  # Writing the number of each species in the dataset to the file. 
+        file.write(str(df["species"].value_counts()) + "\n\n")  # Writing the number of each species in the dataset to the file. 
         file.write("The number of missing values in the dataset:\n")
-        file.write(str(pd.isnull().sum()) + "\n\n")     # Writing the number of missing values in the dataset to the file.
+        file.write(str(df.isnull().sum()) + "\n\n")     # Writing the number of missing values in the dataset to the file.
         file.write("The number of unique values in the dataset:\n")
-        file.write(str(pd.nunique()) + "\n\n")          # Writing the number of unique values in the dataset to the file.
+        file.write(str(df.nunique()) + "\n\n")          # Writing the number of unique values in the dataset to the file.
         file.write("The number of duplicate rows in the dataset:\n")
-        file.write(str(pd.duplicated().sum()) + "\n\n") # Writing the number of duplicate rows in the dataset to the file.
+        file.write(str(df.duplicated().sum()) + "\n\n") # Writing the number of duplicate rows in the dataset to the file.
         # Find duplicate rows (all occurrences)
-        duplicate_mask = pd.duplicated(keep=False)      # Finding duplicate rows (all occurrences).
-        duplicate_entries = pd[duplicate_mask]          # Storing duplicate entries in the variable duplicate_entries.
+        duplicate_mask = df.duplicated(keep=False)      # Finding duplicate rows (all occurrences).
+        duplicate_entries = df[duplicate_mask]          # Storing duplicate entries in the variable duplicate_entries.
         # Display all duplicate entries
         file.write("All Duplicate Entries:\n")
         file.write(str(duplicate_entries))              # Writing all duplicate entries to the file.
@@ -134,25 +134,26 @@ while choice != "q":                                    # While the user's choic
     elif choice == "h":                                 # If the user's choice is "h", the program will execute the following code.
         print("Histograms of each variable from the Iris data set has been saved to PNG files.\n") # Printing a message to confirm that the histograms are being created.
         # Creating histograms of each variable and saving each plot to individual PNG files.
-        saveHist(pd["sepal_length"], "Sepal Length")    #
-        saveHist(pd["sepal_width"], "Sepal Width")      # Creating  the histograms for each varialbles.
-        saveHist(pd["petal_length"], "Petal Length")    #
-        saveHist(pd["petal_width"], "Petal Width")      #
+        saveHist(df["sepal_length"], "Sepal Length")    #
+        saveHist(df["sepal_width"], "Sepal Width")      # Creating  the histograms for each varialbles.
+        saveHist(df["petal_length"], "Petal Length")    #
+        saveHist(df["petal_width"], "Petal Width")      #
 
     elif choice == "p":                                 # If the user's choice is "p", the program will execute the following code.
         print("Scatter plots for each pair of variables from the Iris data set has been created.\n") # Printing a message to confirm that the scatter plots are being created.
         # Creating scatter plots for each pair of variables from the Iris data set.
-        scatter(pd, "sepal_length", "sepal_width", "Scatter Plot Sepal Length vs Sepal Width.")      #  
-        scatter(pd, "sepal_length", "petal_length", "Scatter Plot Sepal Length vs Petal Length.")    #    
-        scatter(pd, "sepal_length", "petal_width", "Scatter Plot Sepal Length vs Petal Width.")      # Creating the scatter plots for each
-        scatter(pd, "sepal_width", "petal_length", "Scatter Plot Sepal Width vs Petal Length.")      #  pair of variables.
-        scatter(pd, "sepal_width", "petal_width", "Scatter Plot Sepal Width vs Petal Width.")        #
-        scatter(pd, "petal_length", "petal_width", "Scatter Plot Petal Length vs Petal Width.")      #
+        scatter(df, "sepal_length", "sepal_width", "Scatter Plot Sepal Length vs Sepal Width.")      #  
+        scatter(df, "sepal_length", "petal_length", "Scatter Plot Sepal Length vs Petal Length.")    #    
+        scatter(df, "sepal_length", "petal_width", "Scatter Plot Sepal Length vs Petal Width.")      # Creating the scatter plots for each
+        scatter(df, "sepal_width", "petal_length", "Scatter Plot Sepal Width vs Petal Length.")      #  pair of variables.
+        scatter(df, "sepal_width", "petal_width", "Scatter Plot Sepal Width vs Petal Width.")        #
+        scatter(df, "petal_length", "petal_width", "Scatter Plot Petal Length vs Petal Width.")      #
 
     elif choice == "a":                                 # If the user's choice is "a", the program will execute the following code.
         print ("The analysis has been saved to analysis.txt.\n") # Printing a message to confirm that the analysis has been saved.
         analyseCorrelation("analysis.txt")              # Calling the analyseCorrelation function and passing the name of the file to write the analysis to.
         writeStatsBySpecies('analysis.txt')             # Calling the writeStatsBySpecies function and passing the name of the file to write the analysis to.
+        findOutliers(df, "analysis.txt")                # Calling the findOutliers function and passing the name of the file to write the analysis to.
     else:                                               # If the user's choice is not "s", "h", "p", "a" or "q", 
                                                         # the program will execute the following code.
         print ("Invalid choice. Please select one of the letters representing one of the menu options.")    # Printing an error message.
