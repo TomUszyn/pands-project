@@ -79,4 +79,36 @@ def writeStatsBySpecies(filename):      # Define a function called writeStatsByS
 
 # Usage
 # writeStatsBySpecies('analysis.txt')
-       
+
+# Function findOutliers.
+def findOutliers(df, filename):         # Define a function called findOutliers that takes a data frame and a filename as arguments.
+    """
+    Find outliers in the data set and write them to a file.
+    
+    Arguments:
+        df: the data frame to search for outliers.
+        filename: the name of the output file.
+    """
+    with open(filename, 'a') as f:      # Open the output file in append mode.
+        f.write("Outliers by species for the Iris Data set.\n\n")   # Write the title of the analysis.
+        for species in df['species'].unique():                      # Iterate over the unique species in the data frame.                     
+            speciesDF = df[df['species'] == species]                # Filter the data frame by species.
+            numericColumns = speciesDF.select_dtypes(include=['float64', 'int64'])  # Select the numeric columns.
+            Q1 = numericColumns.quantile(0.25)                      # Calculate the first quartile.
+            Q3 = numericColumns.quantile(0.75)                      # Calculate the third quartile.
+            IQR = Q3 - Q1                                           # Calculate the interquartile range.
+            outliers = speciesDF[(numericColumns < (Q1 - 1.5 * IQR)) | (numericColumns > (Q3 + 1.5 * IQR))] # Find the outliers.
+            outliers = outliers.dropna(how='all')                   # Drop rows with all NaN values.
+            if not outliers.empty:                                  # Check if there are outliers.
+                f.write(f"Species: {species.capitalize()}\n\n")     # Write the species name.
+                for column in outliers.columns:                     # Iterate over the columns with outliers.
+                    outlierValues = outliers[column].dropna()       # Get the outlier values.
+                    if not outlierValues.empty:                     # Check if there are outlier values.
+                        f.write(f"   Feature: {column.capitalize().replace('_', ' ')}\n")   # Write the feature name.
+                        f.write(                                            #
+                            "   Outlier Values: " + ', '.join([str(value)   # Write the outlier values.
+                            for value in outlierValues.values]) + "\n\n")   # 
+        f.write("\n")                                                       # Write a new line to separate the species results.
+
+# Call the function with the text filename.
+# findOutliers(df, "analysis.txt")                                          # Call the function with the text filename.
