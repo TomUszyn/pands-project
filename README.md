@@ -29,6 +29,7 @@ The repository has the following structure:
 * [`analysis.py`](analysis.py) - The main program for this project.
 * [`analysisFunctions.py`](analysisFunctions.py) - The file where are located all functions used to perform the analysis.
 * [`Documentation.ipynb`](Documentation.ipynb) - The is a well-organized guidebook that explains implemented algorithms and techniques. It's a must-have for users seeking to understand codes and academic information. 
+* [`plottingFunctions.py`](plottingFunctions.py) - The file where all functions used to perform plotting and short functions with simplified calling of the plotting functions in the main program are located.
 * [`README.md`](README.md) - The file where every user should start their experience with the repository. It contains essential information and guidance through the repository.
 
 
