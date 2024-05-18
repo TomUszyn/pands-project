@@ -117,9 +117,9 @@ def scatter(pd, x, y, FigureName):                      # Defining the scatter f
 def displayMenu():                                      # Defining the displayMenu function.
     print("Welcome to the Iris dataset analysis program. Please select an option from the menu below:\n")   #
     print("(s) Create the summary file for the Iris dataset.")                                              #
-    print("(h) Create histograms for each variable in the Iris dataset and save it to PNG files.")          # Options for the user to select.
-    print("(p) Create scatter and plots for each pair of variables in the Iris dataset.")                   #
-    print("(a) Make the analysis of each variables from dataset and save it into txt file.")                #                
+    print("(h) Create histograms for each variable in the Iris dataset and save them to PNG files.")        # Options for the user to select.
+    print("(p) Create scatter plots for each pair of variables in the Iris dataset.")                       #
+    print("(a) Perform advanced analysis for the Iris dataset to the txt file.")                            #                
     print("(q) Quit.\n")                                                                                    #
     choice = input("Please select (s/h/p/a/q): ")                                                           # Asking the user to select an option.
     return choice                                       # Returning the user's choice.

@@ -77,6 +77,23 @@ steps:
 
 Notice: Make sure you are in the correct patch for the file you are trying to execute. Otherwise, you may encounter an error.
 
+## Manual.
+
+To start using program type analysis.py and press enter.It will launch the main program, welcome message and a menu will appear with the following options:
+* (s) Create the summary file for the Iris dataset. This option generates a text file summarizing the dataset.
+* (h) Create histograms for each variable in the Iris dataset and save it to PNG files. This option creates histograms for individual variables and saves them as PNG files.
+* (p) Create scatter and plots for each pair of variables in the Iris dataset. This option generates and displays scatter plots for various pairs of data.
+* (a) Perform advanced analysis for the Iris dataset to the txt file. This option conducts the following analyses and saves it to the analysis.txt file:
+    - Correlation analysis.
+    - Mean, median, and standard deviation calculations for each species.
+    - Identification of outliers for each species.
+* (q) Quit. This option quits the program.
+
+Important notice: Users should note that scatter plots are not generated simultaneously. To display another scatter plot, the currently displayed one must be closed.
+
+If an option other than ‘q’ is selected, the associated actions are executed, and then a menu is displayed for reselection. Choosing ‘q’ only results in program exit. 
+All generated files user can find in the same folder where is the analysis.py located.
+
 ## License.
 
 This repository is licensed under the MIT License. See below:
