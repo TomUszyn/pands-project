@@ -92,7 +92,7 @@ To start using program type analysis.py and press enter.It will launch the main 
 Important notice: Users should note that scatter plots are not generated simultaneously. To display another scatter plot, the currently displayed one must be closed.
 
 If an option other than ‘q’ is selected, the associated actions are executed, and then a menu is displayed for reselection. Choosing ‘q’ only results in program exit. 
-All generated files user can find in the same folder where is the analysis.py located.
+The user can find all generated files in the same folder where the analysis.py is located.
 
 ## License.
 
