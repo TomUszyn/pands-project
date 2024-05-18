@@ -45,6 +45,25 @@ def scatter(pd, x, y, FigureName):                      # Defining the scatter f
 # scatter(pd, 'sepal_length', 'sepal_width', 'Scatter Plot Sepal Length vs Sepal Width')
 
 
+# Function to eary call the scatter function for each pair of features.                
+def createScatterPlots(df, plotDict):
+    for (x, y), title in plotDict.items():
+        scatter(df, x, y, title)
+
+# Define the dictionary with column pairs and titles
+plotDict = {
+    ('sepal_length', 'sepal_width'): "Scatter Plot Sepal Length vs Sepal Width",
+    ('sepal_length', 'petal_length'): "Scatter Plot Sepal Length vs Petal Length",
+    ('sepal_length', 'petal_width'): "Scatter Plot Sepal Length vs Petal Width",
+    ('sepal_width', 'petal_length'): "Scatter Plot Sepal Width vs Petal Length",
+    ('sepal_width', 'petal_width'): "Scatter Plot Sepal Width vs Petal Width",
+    ('petal_length', 'petal_width'): "Scatter Plot Petal Length vs Petal Width"
+}
+
+# Call the function with the dataframe and the dictionary
+# createScatterPlots(df, plotDict)
+
+
 # Creating a function to save a histogram of each variable to a PNG file.
 def saveHist(pd, variableName, numBins=10):       # Defining the saveHist function.
     """
@@ -70,3 +89,19 @@ def saveHist(pd, variableName, numBins=10):       # Defining the saveHist functi
 # Example usage:
 # Assuming 'pd' is pandas DataFrame and 'sepal_length' is the variable wanted to be plotted.
 # saveHist(pd["sepal_length"], "Sepal Length")
+
+
+# Creating a function to save histograms of all variables to PNG files.
+
+columnsDict = {                         #
+    "sepal_length": "Sepal Length",     # Mapping the column names to the titles.
+    "sepal_width": "Sepal Width",       #
+    "petal_length": "Petal Length",     #
+    "petal_width": "Petal Width"        #
+}                                       #
+def saveAllHists(dataframe, columnsDict):           # Defining the saveAllHists function.
+    for columnName, title in columnsDict.items():   # Looping through the columns.
+        saveHist(dataframe[columnName], title)      # Creating a histogram for each column.
+
+# Usage
+# saveAllHists(df, columnsDict)
