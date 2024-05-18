@@ -1,4 +1,4 @@
-# analysisFunctions.py contains functions that are used to analyse
+# analysisFunctions.py contains functions that are used to create summary and analysis results.
 # the data from the Iris data set.
 # Author: Tomasz Uszynski
 
@@ -6,6 +6,45 @@ import pandas as pd                     # Import the pandas library as pd.
 import numpy as np                      # Import the numpy library as np.
 
 df = pd.read_csv("data/iris.csv")       # Load the Iris dataset.
+
+# Creating function to write the summary of data set to a text file.
+def writeSummaryToFile(filename):                       # Defining the writeSummaryToFile function.
+    """
+    Writes a summary of the data set to the specified file.
+
+    Args:
+        filename (str): The name of the file to write the summary to.
+    """
+    with open(filename, "w") as file:                   # Opening the file in write mode.
+        file.write("Summary of the Iris dataset\n\n")
+        file.write("The Iris dataset contains 150 rows and 5 columns.\n")
+        file.write(str(df.shape) + "\n\n")              # Writing the shape of the dataset to the file.
+        file.write("Types of each column in the dataset:\n")
+        file.write(str(df.dtypes) + "\n\n")             # Writing the data types of each column to the file.
+        file.write("The first 5 rows of the dataset:\n")
+        file.write(str(df.head()) + "\n\n")             # Writing the first 5 rows of the dataset to the file.
+        file.write("The last 5 rows of the dataset:\n")
+        file.write(str(df.tail()) + "\n\n")             # Writing the last 5 rows of the dataset to the file.
+        file.write("The summary of the dataset:\n")
+        file.write(str(df.describe()) + "\n\n")         # Writing the summary statistics of the dataset to the file.
+        file.write("The number of each species in the dataset:\n")
+        file.write(str(df["species"].value_counts()) + "\n\n")  # Writing the number of each species in the dataset to the file. 
+        file.write("The number of missing values in the dataset:\n")
+        file.write(str(df.isnull().sum()) + "\n\n")     # Writing the number of missing values in the dataset to the file.
+        file.write("The number of unique values in the dataset:\n")
+        file.write(str(df.nunique()) + "\n\n")          # Writing the number of unique values in the dataset to the file.
+        file.write("The number of duplicate rows in the dataset:\n")
+        file.write(str(df.duplicated().sum()) + "\n\n") # Writing the number of duplicate rows in the dataset to the file.
+        # Find duplicate rows (all occurrences)
+        duplicateMask = df.duplicated(keep=False)      # Finding duplicate rows (all occurrences).
+        duplicateEntries = df[duplicateMask]           # Storing duplicate entries in the variable duplicate_entries.
+        # Display all duplicate entries
+        file.write("All Duplicate Entries:\n")
+        file.write(str(duplicateEntries))              # Writing all duplicate entries to the file.
+        
+# Example usage:
+# writeSummaryToFile("summary.txt")                     # Calling the writeSummaryToFile function and passing the name of the file to write the summary to.
+
 
 # Function analyseCorrelation.
 def analyseCorrelation(filename): # Define a function called analyseCorrelation that takes an output file name as an argument.
@@ -112,3 +151,12 @@ def findOutliers(df, filename):         # Define a function called findOutliers 
 
 # Call the function with the text filename.
 # findOutliers(df, "analysis.txt")                                          # Call the function with the text filename.
+
+# Function analysisOneCall.
+def analysisOneCall():                                                      # Define a function called analysisOneCall.
+    """
+    Calls all the analysis functions in one call.
+    """
+    analyseCorrelation("analysis.txt")                                      # Call the analyseCorrelation function.
+    writeStatsBySpecies("analysis.txt")                                     # Call the writeStatsBySpecies function.
+    findOutliers(df, "analysis.txt")                                        # Call the findOutliers function.

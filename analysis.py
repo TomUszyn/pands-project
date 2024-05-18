@@ -8,52 +8,14 @@
 import pandas as pd                                     # Importing the pandas library.
 import numpy as np                                      # Importing the NumPy library.
 import matplotlib.pyplot as plt                         # Importing the matplotlib library.
-from analysisFunctions import analyseCorrelation, writeStatsBySpecies, findOutliers   # Importing the analyseCorrelation function 
-                                                        # and writeStatsBySpecies from the analysisFunctions.py file.
+from analysisFunctions import analysisOneCall, writeSummaryToFile   # Importing the analysisOneCall and writeSummaryToFile 
+                                                                    # function from the analysisFunctions.py file.
 
 # Reading the data from the file.
 df = pd.read_csv("data/iris.csv")                       # Reading the data from the iris.csv file.
 
-# Creating function to write the summary of data set to a text file.
-def writeSummaryToFile(filename):                       # Defining the writeSummaryToFile function.
-    """
-    Writes a summary of the data set to the specified file.
-
-    Args:
-        filename (str): The name of the file to write the summary to.
-    """
-    with open(filename, "w") as file:                   # Opening the file in write mode.
-        file.write("Summary of the Iris dataset\n\n")
-        file.write("The Iris dataset contains 150 rows and 5 columns.\n")
-        file.write(str(df.shape) + "\n\n")              # Writing the shape of the dataset to the file.
-        file.write("Types of each column in the dataset:\n")
-        file.write(str(df.dtypes) + "\n\n")             # Writing the data types of each column to the file.
-        file.write("The first 5 rows of the dataset:\n")
-        file.write(str(df.head()) + "\n\n")             # Writing the first 5 rows of the dataset to the file.
-        file.write("The last 5 rows of the dataset:\n")
-        file.write(str(df.tail()) + "\n\n")             # Writing the last 5 rows of the dataset to the file.
-        file.write("The summary of the dataset:\n")
-        file.write(str(df.describe()) + "\n\n")         # Writing the summary statistics of the dataset to the file.
-        file.write("The number of each species in the dataset:\n")
-        file.write(str(df["species"].value_counts()) + "\n\n")  # Writing the number of each species in the dataset to the file. 
-        file.write("The number of missing values in the dataset:\n")
-        file.write(str(df.isnull().sum()) + "\n\n")     # Writing the number of missing values in the dataset to the file.
-        file.write("The number of unique values in the dataset:\n")
-        file.write(str(df.nunique()) + "\n\n")          # Writing the number of unique values in the dataset to the file.
-        file.write("The number of duplicate rows in the dataset:\n")
-        file.write(str(df.duplicated().sum()) + "\n\n") # Writing the number of duplicate rows in the dataset to the file.
-        # Find duplicate rows (all occurrences)
-        duplicate_mask = df.duplicated(keep=False)      # Finding duplicate rows (all occurrences).
-        duplicate_entries = df[duplicate_mask]          # Storing duplicate entries in the variable duplicate_entries.
-        # Display all duplicate entries
-        file.write("All Duplicate Entries:\n")
-        file.write(str(duplicate_entries))              # Writing all duplicate entries to the file.
-        
-# Example usage:
-# writeSummaryToFile("summary.txt")                     # Calling the writeSummaryToFile function and passing the name of the file to write the summary to.
-
 # Creating a function to save a histogram of each variable to a PNG file.
-def saveHist(pd, variable_name, num_bins=10):       # Defining the saveHist function.
+def saveHist(pd, variableName, numBins=10):       # Defining the saveHist function.
     """
     Creates a histogram for the specified variable and saves it as a PNG file.
 
@@ -63,15 +25,13 @@ def saveHist(pd, variable_name, num_bins=10):       # Defining the saveHist func
         num_bins (int, optional)is a number of bins for the histogram. Default is set to 10.
     """
     plt.figure(figsize=(10, 8))                                          # Creating a figure with a specified size.
-    
-    # Counting of bin width. 
-    bin_width = (pd.max() - pd.min()) / (num_bins)                       # Calculating the bin width.
+    bin_width = (pd.max() - pd.min()) / (numBins)                        # Calculating the bin width.
     plt.xticks(np.arange(pd.min(), pd.max() + bin_width, bin_width))     # Setting the x-axis ticks.
-    plt.hist(pd, bins=num_bins, color = "blue", edgecolor = "black")     # Creating a histogram.
-    plt.title(f"Histogram of {variable_name}.", fontsize = 15, fontweight = "bold") # Adding a title to the plot.
-    plt.xlabel(f"{variable_name} (cm).", fontsize = 12, fontweight = "bold") # Adding a label to the x-axis.
+    plt.hist(pd, bins=numBins, color = "blue", edgecolor = "black")      # Creating a histogram.
+    plt.title(f"Histogram of {variableName}.", fontsize = 15, fontweight = "bold") # Adding a title to the plot.
+    plt.xlabel(f"{variableName} (cm).", fontsize = 12, fontweight = "bold") # Adding a label to the x-axis.
     plt.ylabel("Frequency.", fontsize = 12, fontweight = "bold")         # Adding a label to the y-axis.
-    plt.savefig(f"{variable_name.lower().replace(' ', '_')}_hist.png")   # Saving the plot as a PNG file.   
+    plt.savefig(f"{variableName.lower().replace(' ', '_')}_hist.png")    # Saving the plot as a PNG file.   
     plt.close()                                                          # Closing the plot.
     
 # Example usage:
@@ -124,7 +84,6 @@ def displayMenu():                                      # Defining the displayMe
     choice = input("Please select (s/h/p/a/q): ")                                                           # Asking the user to select an option.
     return choice                                       # Returning the user's choice.
 
-
 # Main program.
 choice = displayMenu()                                  # Calling the displayMenu function and storing the user's choice in the variable choice.
 while choice != "q":                                    # While the user's choice is not "q", the program will continue to run.
@@ -145,18 +104,16 @@ while choice != "q":                                    # While the user's choic
         scatter(df, "sepal_length", "sepal_width", "Scatter Plot Sepal Length vs Sepal Width.")      #  
         scatter(df, "sepal_length", "petal_length", "Scatter Plot Sepal Length vs Petal Length.")    #    
         scatter(df, "sepal_length", "petal_width", "Scatter Plot Sepal Length vs Petal Width.")      # Creating the scatter plots for each
-        scatter(df, "sepal_width", "petal_length", "Scatter Plot Sepal Width vs Petal Length.")      #  pair of variables.
+        scatter(df, "sepal_width", "petal_length", "Scatter Plot Sepal Width vs Petal Length.")      # pair of variables.
         scatter(df, "sepal_width", "petal_width", "Scatter Plot Sepal Width vs Petal Width.")        #
         scatter(df, "petal_length", "petal_width", "Scatter Plot Petal Length vs Petal Width.")      #
 
     elif choice == "a":                                 # If the user's choice is "a", the program will execute the following code.
         print ("The analysis has been saved to analysis.txt.\n") # Printing a message to confirm that the analysis has been saved.
-        analyseCorrelation("analysis.txt")              # Calling the analyseCorrelation function and passing the name of the file to write the analysis to.
-        writeStatsBySpecies('analysis.txt')             # Calling the writeStatsBySpecies function and passing the name of the file to write the analysis to.
-        findOutliers(df, "analysis.txt")                # Calling the findOutliers function and passing the name of the file to write the analysis to.
+        analysisOneCall()                               # Calling the analysisOneCall function to perform advanced analysis of the Iris dataset.
     else:                                               # If the user's choice is not "s", "h", "p", "a" or "q", 
                                                         # the program will execute the following code.
-        print ("Invalid choice. Please select one of the letters representing one of the menu options.")    # Printing an error message.
+        print ("Invalid choice. Please select one of the letters representing one of the menu options.") # Printing an error message.
 
     choice = displayMenu()                              # Calling the displayMenu function and storing the user's choice in the variable choice.
     
