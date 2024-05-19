@@ -80,7 +80,7 @@ Notice: Make sure you are in the correct patch for the file you are trying to ex
 
 ## Manual.
 
-To start using program type analysis.py and press enter.It will launch the main program, welcome message and a menu will appear with the following options:
+To start using program type analysis.py and press enter. It will launch the main program, welcome message and a menu will appear with the following options:
 * (s) Create the summary file for the Iris dataset. This option generates a text file summarizing the dataset.
 * (h) Create histograms for each variable in the Iris dataset and save it to PNG files. This option creates histograms for individual variables and saves them as PNG files.
 * (p) Create scatter and plots for each pair of variables in the Iris dataset. This option generates and displays scatter plots for various pairs of data.
@@ -90,9 +90,11 @@ To start using program type analysis.py and press enter.It will launch the main 
     - Identification of outliers for each species.
 * (q) Quit. This option quits the program.
 
+The user chooses an option by typing the related letter and pressing enter. The program provides information about what is going on and guides the user through what to do.
+
 Important notice: Users should note that scatter plots are not generated simultaneously. To display another scatter plot, the currently displayed one must be closed.
 
-If an option other than ‘q’ is selected, the associated actions are executed, and then a menu is displayed for reselection. Choosing ‘q’ only results in program exit. 
+If an option other than 'q' is selected, the associated actions are executed, and then a menu is displayed for reselection. Choosing 'q' only results in program exit. 
 The user can find all generated files in the same folder where the analysis.py is located.
 
 ## License.
